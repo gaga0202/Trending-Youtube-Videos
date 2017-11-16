@@ -1,10 +1,15 @@
+require('dotenv').load();
+
 var express = require('express'),
     path    = require('path'),
     helmet  = require('helmet'),
-    version = require('./package.json').version,
+    // version = require('./package.json').version,
+    startMongodb = require('./config/start-mongodb'),
     port    = 3002;
 
 var app = express();
+
+startMongodb.connect();
 
 // Set pug as view engine
 app.set('view engine', 'pug');
