@@ -30,6 +30,8 @@ app.set('views', path.join(__dirname, 'views'));
 // Don't cache the remaining non-static things
 app.use(helmet.noCache());
 
+app.use(morgan('dev'));
+
 app.listen(port, function () {
   console.log('Server started at ' + port);
 });
