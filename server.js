@@ -10,11 +10,19 @@ var express = require('express'),
 
 var app = express();
 
+/**
+ * ============================ Start Mongodb ==================================
+ */
 startMongodb.connect();
 
+/**
+ * ============================ Routes =========================================
+ */
 routes(app);
 
-// Set pug as view engine
+/**
+ * ===================== Set pug as view engine ================================
+ */
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -25,6 +33,9 @@ app.listen(port, function () {
   console.log('Server started at ' + port);
 });
 
+/**
+ * ===================== Attach Variables for front end ========================
+ */
 app.get('*', function (req, res) {
   res.locals.version = version;
 })
