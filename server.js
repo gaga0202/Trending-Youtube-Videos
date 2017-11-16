@@ -1,12 +1,13 @@
 require('dotenv').load();
 
-var express = require('express'),
-    path    = require('path'),
-    helmet  = require('helmet'),
-    version = require('./package.json').version,
-    routes  = require('./server/routes'),
-    startMongodb = require('./config/start-mongodb'),
-    port    = 3002;
+var express           = require('express'),
+    path              = require('path'),
+    helmet            = require('helmet'),
+    morgan            = require('morgan'),
+    version           = require('./package.json').version,
+    routes            = require('./server/routes'),
+    startMongodb      = require('./config/start-mongodb'),
+    port              = 3002;
 
 var app = express();
 
