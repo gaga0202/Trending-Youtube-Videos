@@ -5,6 +5,7 @@
   "name": "trending-youtube-videos",
   "version": "1.0.0",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "helmet": "^3.9.0",
     "lodash": "^4.17.4"
   }
