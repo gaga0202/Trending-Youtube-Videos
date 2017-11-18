@@ -1,6 +1,6 @@
 
-var mongoose = require('');
-var countrySchema = mongoose.schema({
+var mongoose = require('mongoose');
+var countrySchema = mongoose.Schema({
   code:         { type: String, unique: true},
   name:         { type: String},
 });

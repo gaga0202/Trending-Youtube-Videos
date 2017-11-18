@@ -1,16 +1,17 @@
 var Templates = require('./templates.server');
+var Country = require('./controller/country.server.controller');
 
 module.exports = function (app) {
 
   /**
    * ======================= Templates =========================================
    */
-    app.get('/html-templates/home', Templates.home);
-    app.get('/html-templates/country', Templates.country);
-   /**
-    * ======================= TEST ROUTE =======================================
-    */
-  app.get('/api/test', function (req, res) {
-    res.status(200).json({message: 'Hello the app is working'});
-  });
+
+  app.get('/html-templates/home', Templates.home);
+  app.get('/html-templates/country', Templates.country);
+
+  /**
+  * ======================= TEST ROUTE =======================================
+  */
+  app.post('/api/add-country', Country.addCountry);
 };

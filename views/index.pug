@@ -28,9 +28,11 @@ html(lang='en', ng-app='mainApp')
     //- ANGULAR CUSTOM SCRIPTS
     script(src='/js/app.js?version=' + version)
     script(src='/js/route.js?version=' + version)
+    //- CONTROLLERS
     script(src='/js/controller/home.client.controller.js?version=' + version)
     script(src='/js/controller/add-country.client.controller.js?version=' + version)
-
+    //- SERVICE
+    script(src='/js/service/country.client.service.js?version=' + version)
   body
     //- WILL add Background image
     div(class="background-div")
