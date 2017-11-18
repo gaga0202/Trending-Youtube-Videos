@@ -2,6 +2,13 @@ var CountryModel = require('../model/country.server.model.js');
 
 module.exports = {
 
+  /**
+   * Add country and its code to the database
+   * req.body = {
+   *    @param {name} string
+   *    @param {code} string
+   * }
+   */
   addCountry: function (req, res) {
     var code = req.body.code;
     var name = req.body.name;
@@ -32,4 +39,22 @@ module.exports = {
         }
       });
   },
+
+  /**
+   * Return list of  countries and its code from the database
+   * req.query = {
+   *    @param {limit} number
+   *    @param {page} number
+   * }
+   */
+  listCountries: function (req, res) {
+    var page = req.query.page;
+    if (!page) {
+      page = 1;
+    }
+    var limit = req.query.limit;
+    if (!limit) {
+      limit = globals;
+    }
+  }
 }

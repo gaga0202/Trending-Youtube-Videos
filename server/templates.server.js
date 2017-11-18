@@ -5,7 +5,12 @@ module.exports = {
   },
 
   // add country page
-  country: function (req, res) {
+  addCountry: function (req, res) {
     res.render('pages/country');
-  }
+  },
+
+  // List of countries and code
+  listCountries: function (req, res) {
+    res.render('pages/list-countries');
+  },
 }

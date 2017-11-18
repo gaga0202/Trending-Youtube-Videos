@@ -8,10 +8,12 @@ module.exports = function (app) {
    */
 
   app.get('/html-templates/home', Templates.home);
-  app.get('/html-templates/country', Templates.country);
+  app.get('/html-templates/country', Templates.addCountry);
+  app.get('/html-templates/list-countries', Templates.listCountries);
 
   /**
   * ======================= TEST ROUTE =======================================
   */
   app.post('/api/add-country', Country.addCountry);
+  app.get('/api/list-countries', Country.listCountries);
 };
