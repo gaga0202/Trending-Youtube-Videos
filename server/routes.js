@@ -6,6 +6,7 @@ module.exports = function (app) {
    * ======================= Templates =========================================
    */
     app.get('/html-templates/home', Templates.home);
+    app.get('/html-templates/country', Templates.country);
    /**
     * ======================= TEST ROUTE =======================================
     */

@@ -7,6 +7,10 @@ function ($routeProvider, $locationProvider) {
       templateUrl: '/html-templates/home',
       controller: 'HomeController'
     })
+    .when('/add-country', {
+      templateUrl: '/html-templates/country',
+      controller: 'AddCountryController'
+    })
     .otherwise({ redirectTo: '/' });
 
   //eliminate the hashbang
