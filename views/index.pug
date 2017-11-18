@@ -19,3 +19,17 @@ html(lang='en', ng-app='mainApp')
     link(rel='stylesheet', href='/vendor/bower_components/angular-toastr/dist/angular-toastr.css?version=' + version)
     script(src='/vendor/bower_components/angular/angular.min.js?version=' + version)
     script(src='/vendor/bower_components/angular-toastr/dist/angular-toastr.tpls.js?version=' + version)
+    script(src='/vendor/bower_components/angular-route/angular-route.min.js?version=' + version)
+    script(src='/vendor/bower_components/jquery/dist/jquery.min.js?version=' + version)
+    script(src='/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js?version=' + version)
+    script(src='/vendor/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js?version=' + version)
+
+    //- ANGULAR CUSTOM SCRIPTS
+    script(src='/js/app.js?version=' + version)
+
+  body
+    //- WILL add Background image
+    div(class="background-div")
+    //- ANGULAR DYNAMIC CONTENT
+    div(ng-view='')
+    //- END ANGULAR DYNAMIC CONTENT
