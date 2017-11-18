@@ -1,3 +1,3 @@
 module.exports = {
-  limitOfCountriesPerPage = 20,
+  limitOfCountriesPerPage: 20,
 };
