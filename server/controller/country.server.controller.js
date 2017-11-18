@@ -1,4 +1,5 @@
-var CountryModel = require('../model/country.server.model.js');
+var CountryModel  = require('../model/country.server.model.js');
+var globals       = require('../../config/globals');
 
 module.exports = {
 
@@ -54,7 +55,36 @@ module.exports = {
     }
     var limit = req.query.limit;
     if (!limit) {
-      limit = globals;
+      limit = globals.limitOfCountriesPerPage;
     }
+    var count;
+    CountryModel.count()
+      .then(function (c) {
+        count = c;
+        if (count < (page - 1) * limit) {
+          page = Math.ceil(count/limit);
+        }
+        var options = {sort: {name: 1}, skip: (page-1) * limit, limit: limit};
+        return CountryModel.find({},{},options);
+      })
+      .then(function (listCountries) {
+        var base;
+        base = req.path + '?page=';
+        if (count > page * limit) {
+          base = base + (page + 1);
+        } else {
+          base = base + 'finished';
+        }
+        return res.status(200).json({
+          message:    'List of countries',
+          countries:  listCountries,
+          next:       base,
+        })
+      })
+      .catch(function (error) {
+        return res.status(500).json({
+          message:    error.message,
+        });
+      });
   }
 }
