@@ -1,6 +1,10 @@
 .container-fluid
   .row.text-center
     h2.text-capitalize List of Countries and code
+  .row.text-center
+    p(style='display: inline') Create new country code
+    button.btn.btn-success(style='display: inline; margin-left: 10px')
+      a(href='/add-country') Create
   table.table.table-striped.table-margin
     thead
       tr
