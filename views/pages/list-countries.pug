@@ -1,0 +1,18 @@
+.container-fluid
+  .row.text-center
+    h2.text-capitalize List of Countries and code
+  table.table.table-striped.table-margin
+    thead
+      tr
+        th.text-capitalize.text-center country
+        th.text-capitalize.text-center code
+        th.text-capitalize.text-center Edit
+        th.text-capitalize.text-center Delete
+    tbody
+      tr(ng-repeat='country in countries')
+        td.text-capitalize.text-center {{country.name}}
+        td.text-capitalize.text-center {{country.code}}
+        td.text-center
+          button.btn.btn-success(ng-click='editClicked(country.code)') Edit
+        td.text-center
+          button.btn.btn-danger(ng-click='deleteClicked(country.code)') Delete

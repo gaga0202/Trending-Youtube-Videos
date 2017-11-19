@@ -49,11 +49,11 @@ module.exports = {
    * }
    */
   listCountries: function (req, res) {
-    var page = req.query.page;
+    var page = parseInt(req.query.page);
     if (!page) {
       page = 1;
     }
-    var limit = req.query.limit;
+    var limit = parseInt(req.query.limit);
     if (!limit) {
       limit = globals.limitOfCountriesPerPage;
     }
@@ -68,17 +68,17 @@ module.exports = {
         return CountryModel.find({},{},options);
       })
       .then(function (listCountries) {
-        var base;
-        base = req.path + '?page=';
+        var next;
+        next = req.path + '?page=';
         if (count > page * limit) {
-          base = base + (page + 1);
+          next = true;
         } else {
-          base = base + 'finished';
+          next = false;
         }
         return res.status(200).json({
           message:    'List of countries',
           countries:  listCountries,
-          next:       base,
+          next:       next,
         })
       })
       .catch(function (error) {
