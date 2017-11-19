@@ -28,7 +28,7 @@ module.exports = {
         return country.save();
       })
       .then(function (c) {
-        return res.status(200).json({message: 'Country saved'});
+        return res.status(201).json({message: 'Country saved'});
       })
       .catch(function (error) {
         if (error.message === '409') {
@@ -84,6 +84,33 @@ module.exports = {
       .catch(function (error) {
         return res.status(500).json({
           message:    error.message,
+        });
+      });
+  },
+
+  /**
+   * Delete the country details from the db
+   * req.params = {
+   *    @param {countryCode} string
+   * }
+   */
+  deleteCountry: function (req, res) {
+    console.log(req.params);
+    var code = req.params.countryCode;
+    if (!code) {
+      return res.status(400).json({
+        message: 'Country not selected',
+      });
+    }
+    CountryModel.remove({code: code})
+      .then(function (_result) {
+        return res.status(200).json({
+          message:  'Delete related mapping and uniqe video',
+        });
+      })
+      .catch(function (error) {
+        return res.status(500).json({
+          message: error.message,
         });
       });
   }

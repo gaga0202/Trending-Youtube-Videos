@@ -16,4 +16,5 @@ module.exports = function (app) {
   */
   app.post('/api/add-country', Country.addCountry);
   app.get('/api/list-countries', Country.listCountries);
+  app.delete('/api/country/:countryCode', Country.deleteCountry);
 };

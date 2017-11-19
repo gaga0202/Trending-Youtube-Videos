@@ -1,6 +1,6 @@
 app.controller('ListCountriesController',[
-  '$scope', 'toastr', 'CountryService','$interval',
-function ($scope, toastr, CountryService, $interval) {
+  '$scope', 'toastr', 'CountryService','$interval', '$location',
+function ($scope, toastr, CountryService, $interval, $location) {
   // ----------------------- Controller variables ------------------------------
   var limit = 5;
   var intervals = [];
@@ -34,7 +34,6 @@ function ($scope, toastr, CountryService, $interval) {
           result.data.countries.forEach(function (country) {
             $scope.countries.push(country);
           })
-          console.log(result.data);
           if (!result.data.next) {
             $scope.finished = true;
           }
@@ -53,7 +52,15 @@ function ($scope, toastr, CountryService, $interval) {
     }
     CountryService.deleteCountry(code)
       .then(function (result) {
-        console.log(result);
+        toastr.success(result.data.message, {timeout: 1500});
+        $scope.page = 1;
+        $scope.countries = [];
+        $scope.initialized = false;
+        $scope.finished = false;
+        intervals = [];
+        loadMoreInterval;
+        waitingOnLoadMore = false;
+        $scope.loadMore();
       })
       .catch(function (error) {
         console.log(error);
@@ -71,8 +78,6 @@ function ($scope, toastr, CountryService, $interval) {
               var body = document.body;
               var yPos = window.pageYOffset;
               var windowHeight = window.innerHeight;
-              console.log('!waitingOnLoadMore is ' + !waitingOnLoadMore);
-              console.log('!$scope.finished is ' + !$scope.finished);
               if (!waitingOnLoadMore
                   && windowHeight +yPos > body.scrollHeight - bufferSize
                   && !$scope.finished) {
