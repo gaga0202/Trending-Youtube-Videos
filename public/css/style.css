@@ -24,3 +24,6 @@ button > a:hover{
   color: white;
   text-decoration: none;
 }
+.btn-inline {
+  margin-left: 10px;
+}

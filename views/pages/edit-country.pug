@@ -1,0 +1,16 @@
+.container.container-dark
+  .panel.panel-primary
+    .panel-heading.text-center
+      lable Country Data  
+    .panel-body
+      .form-inline.text-center
+        .form-group
+          label.form-lable Country Name:
+          input(type='text', ng-model='country.name')
+        .form-group
+          label.form-lable Country code:
+          input(type='text', ng-model='country.code')
+      br
+      .row.text-center
+        button.btn.btn-success.form-button(ng-click='editCountry()') Edit
+        button.btn.btn-danger.form-button.btn-inline(ng-click='deleteCountry()') Delete
