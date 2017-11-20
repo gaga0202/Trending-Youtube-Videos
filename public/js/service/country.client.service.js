@@ -18,12 +18,19 @@ app.factory('CountryService', ['$http', function ($http) {
       } else {
         url = url + '&limit=' + 25;
       }
+      if (query.code) {
+        url = url + '&code=' + query.code;
+      }
       return $http.get(url);
     },
 
     // Delete Country from db
     deleteCountry: function (code) {
       return $http.delete('/api/country/' + code);
+    },
+
+    editCountry: function (codes) {
+      return $http.put('/api/edit-country/' + codes.previousCode, codes);
     }
   }
 }]);

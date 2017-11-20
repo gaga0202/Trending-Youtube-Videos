@@ -57,15 +57,20 @@ module.exports = {
     if (!limit) {
       limit = globals.limitOfCountriesPerPage;
     }
+    var code = req.query.code;
+    var query = {};
+    if (code){
+      query.code = code;
+    }
     var count;
-    CountryModel.count()
+    CountryModel.count(query)
       .then(function (c) {
         count = c;
         if (count < (page - 1) * limit) {
           page = Math.ceil(count/limit);
         }
         var options = {sort: {name: 1}, skip: (page-1) * limit, limit: limit};
-        return CountryModel.find({},{},options);
+        return CountryModel.find(query, {}, options);
       })
       .then(function (listCountries) {
         var next;
@@ -95,7 +100,6 @@ module.exports = {
    * }
    */
   deleteCountry: function (req, res) {
-    console.log(req.params);
     var code = req.params.countryCode;
     if (!code) {
       return res.status(400).json({
@@ -113,5 +117,40 @@ module.exports = {
           message: error.message,
         });
       });
-  }
+  },
+
+  editCountry: function (req, res) {
+    var previousCode = req.body.previousCode;
+    var newCode      = req.body.newCode;
+    var newName      = req.body.newName;
+    CountryModel.findOneAndUpdate(
+        {code: previousCode}, 
+        {$set: {code: newCode, name: newName}}
+      )
+      .then(function (result) {
+        if (!result) {
+          throw new Error('previous code not found');
+        }
+        return res.status(200).json({
+          message:    'Country Record updated',
+        });
+      })
+      .catch(function (error) {
+        console.log(error)
+        if (error.message === 'previous code not found'){
+          return res.status(404).json({
+            message:    'Country not found',
+          });
+        } else if (error.name === 'MongoError' 
+          && error.codeName === 'DuplicateKey'){
+            return res.status(400).json({
+              message:    'New country already exists',
+            });
+        } else {
+          return res.status(500).json({
+            message:    error.message,
+          });
+        }
+      });
+  },
 }
