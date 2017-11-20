@@ -15,9 +15,9 @@ function ($routeProvider, $locationProvider) {
       templateUrl:  '/html-templates/list-countries',
       controller:   'ListCountriesController'
     })
-    .when('/edit-countries/:countryCode', {
-      templateUrl:  '/html-templates/edit-country'
-      // controller:   'ListCountriesController'
+    .when('/edit-country/:countryCode', {
+      templateUrl:  '/html-templates/edit-country',
+      controller:   'EditCountryController'
     })
     .otherwise({ redirectTo: '/' });
 
