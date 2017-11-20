@@ -13,3 +13,14 @@
 .table-margin{
   margin: 20px 0px;
 }
+
+button > a:link{
+  color: white;
+}
+button > a:visited{
+  color: white;
+}
+button > a:hover{
+  color: white;
+  text-decoration: none;
+}
