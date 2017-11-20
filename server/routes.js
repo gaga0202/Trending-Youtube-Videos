@@ -10,6 +10,7 @@ module.exports = function (app) {
   app.get('/html-templates/home', Templates.home);
   app.get('/html-templates/country', Templates.addCountry);
   app.get('/html-templates/list-countries', Templates.listCountries);
+  app.get('/html-templates/edit-country', Templates.editCountry);
 
   /**
   * ======================= TEST ROUTE =======================================

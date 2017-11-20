@@ -13,4 +13,8 @@ module.exports = {
   listCountries: function (req, res) {
     res.render('pages/list-countries');
   },
+
+  editCountry: function (req, res) {
+    res.render('pages/edit-country');
+  }
 }
