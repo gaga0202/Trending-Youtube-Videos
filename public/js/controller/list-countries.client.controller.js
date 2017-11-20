@@ -16,6 +16,7 @@ function ($scope, toastr, CountryService, $interval, $location) {
   // -------------------------- Scope functions --------------------------------
   $scope.loadMore = loadMore;
   $scope.deleteClicked = deleteClicked;
+  $scope.editClicked = editClicked;
 
   // ----------------------- Function Declaration ------------------------------
   function loadMore() {
@@ -65,6 +66,13 @@ function ($scope, toastr, CountryService, $interval, $location) {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  function editClicked(code) {
+    if (!code) {
+      torastr.error('Country not selected', {timeout: 1500});
+    }
+    $location.url('/edit-country/' + code);
   }
 
   // ------------------------ Controller Work ----------------------------------

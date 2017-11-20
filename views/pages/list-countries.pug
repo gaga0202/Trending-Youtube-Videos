@@ -4,7 +4,7 @@
   .row.text-center
     p(style='display: inline') Create new country code
     button.btn.btn-success(style='display: inline; margin-left: 10px')
-      a(href='/add-country') Create
+      a.text-light(href='/add-country') Create
   table.table.table-striped.table-margin
     thead
       tr
@@ -17,6 +17,7 @@
         td.text-capitalize.text-center {{country.name}}
         td.text-capitalize.text-center {{country.code}}
         td.text-center
-          button.btn.btn-success(ng-click='editClicked(country.code)') Edit
+          button.btn.btn-success.text-light
+            a(href='/edit-country/{{country.code}}') Edit
         td.text-center
           button.btn.btn-danger(ng-click='deleteClicked(country.code)') Delete
