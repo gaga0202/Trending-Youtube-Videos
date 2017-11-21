@@ -1,5 +1,6 @@
 var Templates = require('./templates.server');
 var Country = require('./controller/country.server.controller');
+var Youtube = require('./controller/youtube.server.controller');
 
 module.exports = function (app) {
 
@@ -19,4 +20,9 @@ module.exports = function (app) {
   app.get('/api/list-countries', Country.listCountries);
   app.delete('/api/country/:countryCode', Country.deleteCountry);
   app.put('/api/edit-country/:previousCode', Country.editCountry);
+
+  /**
+  * ======================= Youtube ROUTE ======================================
+  */
+  app.post('/api/youtubeTrendingVideos', Youtube.trendingVideos);
 };
