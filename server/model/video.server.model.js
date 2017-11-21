@@ -8,9 +8,9 @@ var videoSchema = mongoose.Schema({
   duration:           { type: Number },
   thumbnailUrl:       { type: String },
   timePublished:      { type: Date },
-  reaction:           {
-    like:             { type: Number, default: 0 },
-    dislike:          { type: Number, default: 0 },
+  reactions:          {
+    likes:            { type: Number, default: 0 },
+    dislikes:         { type: Number, default: 0 },
   },
   views:              { type: Number, default: 0 },
 });
