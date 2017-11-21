@@ -1,7 +1,10 @@
 var google = require('googleapis');
 var youtubeApiKey = require('../../config/secrets').youtubeApiKey;
 var CountryModel = require('../model/country.server.model');
+var VideoModel  = require('../model/video.server.model')
 var Promise = require('bluebird');
+var _ = require('lodash');
+
 
 module.exports = {
   trendingVideos: function (req, res) {
@@ -46,7 +49,7 @@ function getYoutubeVideos(code){
     .then(function (result) {
       console.log(result);
       var videos = result.items;
-      var pSaveVideDetails = saveVideos(videos);
+      var pSaveVideDetails = updateVideosAndTrend(videos, code);
     })
     .catch(function (error) {
       console.log(error);
@@ -54,6 +57,32 @@ function getYoutubeVideos(code){
 }
 
 // save and update Videos 
-function saveVideos(params) {
-  
+function updateVideosAndTrend(videos) {
+  videos.forEach(function (video, key) {
+    saveVideo(video);
+
+  });
+}
+
+// create or update the video
+function saveVideo(video) {
+  VideoModel.findOne({
+      videoId: video.id,
+    })
+    .then(function (vid) {
+      if (!vid) {
+        vid = new VideoModel();
+        vid.videoId = video.id;
+      }
+      vid.title = video.snippet.title;
+      vid.description = video.snippet.description;
+      vid.channelId = video.snippet.channelId;
+      vid.channelTitle = video.snippet.channelTitle;
+      // vid.duration = video.contentDetails.duration;
+    })
+}
+
+// Update the video id for the top trending videos for the region
+function updateTrend(no, code, id){
+
 }
