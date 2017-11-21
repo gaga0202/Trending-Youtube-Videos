@@ -13,7 +13,6 @@ var videoSchema = mongoose.Schema({
     dislike:          { type: Number, default: 0 },
   },
   views:              { type: Number, default: 0 },
-  trendNo:            { type: Number },
 });
 
 module.exports = mongoose.model('Video', videoSchema, 'Videos');
