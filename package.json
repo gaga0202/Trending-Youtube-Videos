@@ -5,6 +5,7 @@
   "name": "trending-youtube-videos",
   "version": "1.0.0",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
