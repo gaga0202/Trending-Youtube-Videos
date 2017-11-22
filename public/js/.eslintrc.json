@@ -1,0 +1,16 @@
+{
+  "env": {
+      "browser": true,
+      "node": false,
+      "es6": false
+  },
+  "extends": "../.eslintrc.json",
+  "parserOptions": {
+      "ecmaVersion": 5,
+      "sourceType": "script"
+  },
+  "rules": {
+      "comma-dangle": ["error", "never"], 
+      "no-console": "warn"
+  }
+}
