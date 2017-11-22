@@ -34,6 +34,7 @@ module.exports = {
           message:          'Trending videos imported',
           trendingVideos:   trendingObject,
           countryName:      country.name,
+          countryCode:      country.code,
         });
       })
       .catch(function (error) {
