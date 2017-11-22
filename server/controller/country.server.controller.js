@@ -27,7 +27,7 @@ module.exports = {
         });
         return country.save();
       })
-      .then(function (c) {
+      .then(function (_c) {
         return res.status(201).json({message: 'Country saved'});
       })
       .catch(function (error) {
@@ -36,7 +36,7 @@ module.exports = {
         } else if (error.message === '400') {
           return res.status(400).json({message: 'Bad Request'});
         } else {
-          return res.status(500).json({message: err.message});
+          return res.status(500).json({message: error.message});
         }
       });
   },
@@ -84,7 +84,7 @@ module.exports = {
           message:    'List of countries',
           countries:  listCountries,
           next:       next,
-        })
+        });
       })
       .catch(function (error) {
         return res.status(500).json({
@@ -136,7 +136,7 @@ module.exports = {
         });
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
         if (error.message === 'previous code not found'){
           return res.status(404).json({
             message:    'Country not found',
@@ -153,4 +153,32 @@ module.exports = {
         }
       });
   },
+
+  getAll: function (req, res) {
+    return CountryModel.find()
+      .then(function (result) {
+        return res.status(200).json({
+          message:        'All countries list',
+          countries:      mapCountries(result),
+        });
+      })
+      .catch(function (error) {
+        return res.status(500).json({
+          message:    error.message,
+        });
+      });
+  },
+};
+
+function mapCountries(countries) {
+  var countryArray = _.map(countries, mapCountry(country) );
+  return countryArray;
+}
+
+function mapCountry(country) {
+  var result = {
+    countryName:  country.name,
+    countryCode:  country.code,
+  };
+  return result;
 }

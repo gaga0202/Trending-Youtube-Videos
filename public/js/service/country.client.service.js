@@ -24,6 +24,10 @@ app.factory('CountryService', ['$http', function ($http) {
       return $http.get(url);
     },
 
+    getAll: function () {
+      return $http.get('/api/country');
+    },
+
     // Delete Country from db
     deleteCountry: function (code) {
       return $http.delete('/api/country/' + code);
