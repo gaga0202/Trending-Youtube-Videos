@@ -11,13 +11,15 @@ var moment          = require('moment');
 module.exports = {
   trendingVideos: function (req, res) {
     var regionCode = req.body.code;
+    var country;
     if (!regionCode) {
       return res.status(400).json({
         message:  'Please select the country',
       });
     }
     CountryModel.find({code: regionCode})
-      .then(function (country) {
+      .then(function (c) {
+        country = c;
         if (!country) {
           throw new Error('Country not found');
         }
@@ -31,6 +33,7 @@ module.exports = {
         return res.status(201).json({
           message:          'Trending videos imported',
           trendingVideos:   trendingObject,
+          countryName:      country.name,
         });
       })
       .catch(function (error) {
