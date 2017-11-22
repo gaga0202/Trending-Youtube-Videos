@@ -17,6 +17,7 @@ module.exports = function (app) {
   * ======================= TEST ROUTE =======================================
   */
   app.post('/api/add-country', Country.addCountry);
+  app.get('/api/country', Country.getAll);
   app.get('/api/list-countries', Country.listCountries);
   app.delete('/api/country/:countryCode', Country.deleteCountry);
   app.put('/api/edit-country/:previousCode', Country.editCountry);
