@@ -1,5 +1,7 @@
 var CountryModel  = require('../model/country.server.model.js');
 var globals       = require('../../config/globals');
+var _             = require('lodash');
+var Promise       = require('bluebird');
 
 module.exports = {
 
@@ -163,6 +165,7 @@ module.exports = {
         });
       })
       .catch(function (error) {
+        console.log(error);
         return res.status(500).json({
           message:    error.message,
         });
@@ -171,7 +174,9 @@ module.exports = {
 };
 
 function mapCountries(countries) {
-  var countryArray = _.map(countries, mapCountry(country) );
+  var countryArray = _.map(countries, function (country) {
+    return mapCountry(country);
+  } );
   return countryArray;
 }
 
