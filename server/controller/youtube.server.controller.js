@@ -18,16 +18,19 @@ module.exports = {
     }
     CountryModel.find({code: regionCode})
       .then(function (country) {
-        console.log('the country is ');
-        console.log(country);
         if (!country) {
           throw new Error('Country not found');
         }
         return getYoutubeVideos(regionCode);
       })
-      .then(function () {
+      .then(function (_result) {
+        var resultObject = getTopTrendingVideosForCountry(regionCode);
+        return resultObject;
+      })
+      .then(function (trendingObject) {
         return res.status(201).json({
-          message:    'Trending videos imported',
+          message:          'Trending videos imported',
+          trendingVideos:   trendingObject,
         });
       })
       .catch(function (error) {
@@ -37,7 +40,7 @@ module.exports = {
             message: 'Please enter valid country code',
           });
         }
-      })
+      });
   },
 };
 
@@ -55,7 +58,6 @@ function getYoutubeVideos(code){
   return pGetVideos
     .then(function (result) {
       var videos = result.items;
-      console.log(videos);
       var pSaveVideDetails = updateVideosAndTrend(videos, code);
       return pSaveVideDetails
           .then(function (_result) {
@@ -75,7 +77,7 @@ function updateVideosAndTrend(videos, code) {
   var promiseArray = [];
   videos.forEach(function (video, key) {
     var pSaveVideo = saveVideo(video);
-    var pUpdateTrend = updateTrend(key, code, video.id);
+    var pUpdateTrend = updateTrend((key + 1), code, video.id);
     promiseArray.push(pSaveVideo);
     promiseArray.push(pUpdateTrend);
   });
@@ -106,7 +108,7 @@ function saveVideo(video) {
     })
     .catch(function (error) {
       throw error;
-    })
+    });
 }
 
 // Update the video id for the top trending videos for the region
@@ -116,16 +118,12 @@ function updateTrend(no, code, id){
       trendNo:     no,
     })
     .then(function (trend) {
-      console.log('the trend is ');
-      console.log(trend);
       if (!trend) {
         trend = new TrendModel();
         trend.countryCode = code;
         trend.trendNo     = no;
       }
       trend.videoId = id;
-      console.log('the trend after is  ');
-      console.log(trend);
       return trend.save();
     })
     .catch(function (error) {
@@ -144,4 +142,64 @@ function getBestThumbnailUrl(thumbnail) {
     }
   });
   return thumbnail[optionToSelect].url;
+}
+
+// get the trenging videos for the country
+function getTopTrendingVideosForCountry(code) {
+  var pGetVideoIdsForCountry = getVideoIdsForCountry(code);
+  return pGetVideoIdsForCountry
+    .then(function (trendYoutubeId) {
+      var pArray = [];
+      _.forEach(trendYoutubeId, function (vidTrend) {
+        var pGetVideos = getVideos(vidTrend);
+        pArray.push(pGetVideos);
+      });
+      return Promise.all(pArray);
+    })
+    .then(function (pArray) {
+      var trendingArray = _.sortBy(pArray, 'trendingNo');
+      return trendingArray;
+    })
+    .catch(function (error) {
+      throw error;
+    });
+}
+
+// get videoIds for this country
+function getVideoIdsForCountry(code) {
+  var pipe = [
+    { $match: {
+      countryCode: code,
+    }},
+    // Sort them by newest first
+    { $sort: { trendNo: 1 } },
+    // Group the videos by channels
+    { $group: {
+      _id: '$videoId',
+      trendingNo: { $first: '$trendNo' },
+    }},
+  ];
+  return TrendModel.aggregate(pipe)
+    .then(function (result) {
+      return result;
+    })
+    .catch(function (error) {
+      console.log(error);
+      throw error;
+    });
+}
+
+
+function getVideos(vidTrend) {
+  return VideoModel.findOne({videoId: vidTrend._id})
+    .then(function (video) {
+      var result = {
+        video:        video,
+        trendingNo:   vidTrend.trendingNo,
+      };
+      return result;
+    })
+    .catch(function (error) {
+      throw error;
+    });
 }
