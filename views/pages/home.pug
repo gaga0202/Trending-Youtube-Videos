@@ -1,2 +1,17 @@
-.container-fluid
-  h1 {{ test }}
+.container
+  h2.text-center.main-heading Watch trending youtube videos of your country
+  .row
+    .form-group.text-center
+      label Select the country
+      select.form-margin-left(ng-model='country.code', style='width: 30%;')
+        option.text-capitalize(ng-repeat='x in country.countries', value='{{x.countryCode}}') {{x.countryName}}
+      button.btn.btn-danger.form-margin-left(ng-click='getTrendForCountry()') Show Trending Videos
+  .row
+    div#image.form-margin-bottom(ng-repeat='x in trendingVideos')
+      .row
+        .col-sm-5.text-center
+          img#image.thumbnail-display(ng-src="{{x.video.thumbnailUrl}}", alt="Thumbnail error")
+        .col-sm-7(style='display: block;')
+          h6.text-margin Trend No: {{ x.trendingNo }}
+          h6.text-margin Title: {{ x.video.title}}
+          p.text-margin.text-muted.hide-description Description : {{ x.video.description }}
