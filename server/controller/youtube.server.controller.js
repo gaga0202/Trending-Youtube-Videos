@@ -17,7 +17,7 @@ module.exports = {
         message:  'Please select the country',
       });
     }
-    CountryModel.find({code: regionCode})
+    CountryModel.findOne({code: regionCode})
       .then(function (c) {
         country = c;
         if (!country) {
