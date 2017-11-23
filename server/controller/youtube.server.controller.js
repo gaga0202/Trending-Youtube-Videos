@@ -43,6 +43,10 @@ module.exports = {
           return res.status(404).json({
             message: 'Please enter valid country code',
           });
+        } else {
+          return res.status(500).json({
+            message:  error.message,
+          });
         }
       });
   },
@@ -73,6 +77,7 @@ function getYoutubeVideos(code){
     })
     .catch(function (error) {
       console.log(error);
+      throw error;
     });
 }
 
