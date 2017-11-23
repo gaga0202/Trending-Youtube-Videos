@@ -13,6 +13,16 @@
 .table-margin{
   margin: 20px 0px;
 }
+.form-margin-left{
+  margin-left: 2%;
+}
+.form-margin-bottom{
+  margin-bottom: 2%;
+}
+
+.text-margin {
+  margin-left: 10px;
+}
 
 button > a:link{
   color: white;
@@ -26,4 +36,16 @@ button > a:hover{
 }
 .btn-inline {
   margin-left: 10px;
+}
+.main-heading{
+  color: rgb(158, 44, 75);
+}
+.thumbnail-display {
+  display:      'inline-block';
+  max-width:    90%;
+}
+.hide-description {
+  line-height:  1.5em;
+  max-height:   6em;
+  overflow: scroll;
 }
