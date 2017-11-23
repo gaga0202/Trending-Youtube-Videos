@@ -3,7 +3,7 @@
   .row
     .form-group.text-center
       label Select the country
-      select.form-margin-left(ng-model='country.code', style='width: 30%;')
+      select.form-margin-left(ng-model='country.countryCode', style='width: 30%;')
         option.text-capitalize(ng-repeat='x in country.countries', value='{{x.countryCode}}') {{x.countryName}}
       button.btn.btn-danger.form-margin-left(ng-click='getTrendForCountry()') Show Trending Videos
   .row
