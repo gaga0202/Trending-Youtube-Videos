@@ -12,14 +12,6 @@ function ($scope, $location, toastr, $routeParams, CountryService, TrendService)
 
   // ----------------------- Function Declaration ----------------------------
   function initialize() {
-    CountryService.getAll()
-      .then(function (result) {
-        $scope.country.countries = result.data.countries;
-      })
-      .catch(function (error) {
-        toastr.error(error.data.message, {timeOut: 1500});
-      })
-
     var pTrendingList; 
     if (countryCode) {
       pTrendingList = TrendService.getTrend(countryCode);
@@ -31,17 +23,22 @@ function ($scope, $location, toastr, $routeParams, CountryService, TrendService)
         $scope.trendingVideos = result.data.trendingVideos;
         $scope.country.countryName = result.data.countryName;
         $scope.country.countryCode = result.data.countryCode;
-        var code = angular.element(document.getElementById('image'));
-        console.log(code);
       })
       .catch(function (error) {
-        toastr.error(errorArray.data.message, {timeOut: 1500});
+        toastr.error(error.data.message, {timeOut: 1500});
       });
   }
 
   function getTrendForCountry() {
-    $location.url('/?code=' + $scope.country.code);
+    $location.url('/?code=' + $scope.country.countryCode);
   }
   // ----------------------- Controller Operations ----------------------------
-  initialize();
+  CountryService.getAll()
+  .then(function (result) {
+    $scope.country.countries = result.data.countries;
+    initialize();
+  })
+  .catch(function (error) {
+    toastr.error(error.data.message, {timeOut: 1500});
+  })
 }]);
