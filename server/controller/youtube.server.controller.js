@@ -9,6 +9,9 @@ var moment          = require('moment');
 
 
 module.exports = {
+  /**
+   * Get top 25 trending videos of a country
+   */
   trendingVideos: function (req, res) {
     var regionCode = req.body.code;
     var country;
@@ -46,6 +49,31 @@ module.exports = {
         } else {
           return res.status(500).json({
             message:  error.message,
+          });
+        }
+      });
+  },
+
+
+  /**
+   * Get all the video details for the videoId
+   */
+  getVideoDetails:  function (req, res) {
+    var videoId = req.params.videoId;
+    VideoModel.findOne({videoId: videoId})
+      .then(function (video) {
+        if (!video) {
+          throw new Error('404');
+        }
+        return res.status(200).json({
+          message:    'Video details attached',
+          video:    video,
+        });
+      })
+      .catch(function (error) {
+        if (error.message === '404') {
+          return res.status(404).json({
+            message:    'Video not found',
           });
         }
       });

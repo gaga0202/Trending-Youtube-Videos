@@ -23,7 +23,8 @@ module.exports = function (app) {
   app.put('/api/edit-country/:previousCode', Country.editCountry);
 
   /**
-  * ======================= Youtube ROUTE ======================================
+  * ================== Youtube and Video ROUTE =================================
   */
   app.post('/api/youtubeTrendingVideos', Youtube.trendingVideos);
+  app.get('/api/video/:videoId', Youtube.getVideoDetails);
 };
