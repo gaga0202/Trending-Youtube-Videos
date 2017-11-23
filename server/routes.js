@@ -27,4 +27,5 @@ module.exports = function (app) {
   */
   app.post('/api/youtubeTrendingVideos', Youtube.trendingVideos);
   app.get('/api/video/:videoId', Youtube.getVideoDetails);
+  app.get('/api/watch-more/:videoId', Youtube.watchMore);
 };

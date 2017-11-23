@@ -78,6 +78,80 @@ module.exports = {
         }
       });
   },
+
+  /**
+   * Watch more suggestions on video page
+   */
+  watchMore: function (req, res) {
+    var videoId = req.params.videoId;
+    var page = parseInt(req.query.page);
+    if (!page){
+      page = 1;
+    }
+    var limit = 3;
+    if (page * limit >= 25) {
+      page = Math.ceil(24/limit);
+    }
+    TrendModel.findOne({ videoId: videoId })
+      .then(function (trendResult) {
+        if (!trendResult) {
+          throw new Error('404');
+        }
+        var pipe = [
+          {$match:  {
+            countryCode:  trendResult.countryCode,
+            $nor:      [{videoId:  videoId}],
+          }},
+          {$sort: {trendNo: 1}},
+          {$skip: (page - 1) * limit},
+          {$limit:  limit},
+          {$group: {
+            _id:          '$videoId',
+            trendingNo:   {$first:  '$trendNo'},
+          }},
+        ];
+        return TrendModel.aggregate(pipe);
+      })
+      .then(function (trendYoutubeId) {
+        var pArray = [];
+        _.forEach(trendYoutubeId, function (vidTrend) {
+          var pGetVideos = getVideos(vidTrend);
+          pArray.push(pGetVideos);
+        });
+        return Promise.all(pArray);
+      })
+      .then(function (pArray) {
+        var trendingArray = _.sortBy(pArray, 'trendingNo');
+        var previousPage, nextPage;
+        if (page * limit > 25) {
+          nextPage = 1;
+        } else {
+          nextPage = page + 1;
+        }
+        if (page === 1) {
+          previousPage = Math.ceil(24/limit);
+        } else {
+          previousPage = page - 1;
+        }
+        return res.status(200).json({
+          message:        'Watch more',
+          videos:         trendingArray,
+          nextPage:       nextPage,
+          previousPage:   previousPage,
+        });
+      })
+      .catch(function (error) {
+        if (error.message === '404') {
+          return res.status(404).json({
+            message:      'Trend not found',
+          });
+        } else {
+          return res.status(500).json({
+            message:      error.message,
+          });
+        }
+      });
+  },
 };
 
 // get trending videos of the region using its Code
