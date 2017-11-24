@@ -10,6 +10,11 @@
   .row.margin-10
     h5.text-muted Description
     p.text-muted {{ video.description }}
+  //- .row.margin-10.text-center
+  //-   a(ng-click='previousPageClicked()')
+  //-     i.fa.fa-arrow-left.margin-10
+  //-   a(ng-click='nextPageClicked()')
+  //-     i.fa.fa-arrow-right.margin-10
   .row.margin-10
     div(ng-repeat='x in videos')
       .col-sm-4
@@ -17,4 +22,9 @@
           img#image.thumbnail-display(src='{{ x.video.thumbnailUrl }}')
           h6.text-center.max-width-90 Trend No: {{ x.trendingNo }}
           h6.text-center.max-width-90 {{ x.video.title }}
+  .row.margin-10.text-center
+    a.cursor-pointer(ng-click='previousPageClicked()')
+      i.fa.fa-arrow-left.margin-10
+    a.cursor-pointer(ng-click='nextPageClicked()')
+      i.fa.fa-arrow-right.margin-10
       

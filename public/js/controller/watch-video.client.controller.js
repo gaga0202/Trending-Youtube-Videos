@@ -3,11 +3,14 @@ app.controller('WatchVideoController',[
 function ($scope, $location, TrendService, $routeParams, VideoPlayer, toastr) {
   
   //===================== Variable Initialization ==============================
-  var page = 1;
+  var nextPage;
+  var previousPage;
 
   // ======================== Scope Variables ==================================
   $scope.videoId = $routeParams.videoId;
   $scope.video;
+  $scope.nextPageClicked = nextPageClicked;
+  $scope.previousPageClicked = previousPageClicked;
 
   // ======================== Scope Functions ==================================
 
@@ -38,12 +41,23 @@ function ($scope, $location, TrendService, $routeParams, VideoPlayer, toastr) {
       videoId:    $scope.videoId,
     };
     TrendService.watchMore(details)
-      .then(function (result) {        
+      .then(function (result) {
+        console.log(result);
         $scope.videos = result.data.videos;
+        nextPage      = result.data.nextPage;
+        previousPage  = result.data.previousPage;
       })
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  function nextPageClicked() {
+    watchMore(nextPage);
+  }
+
+  function previousPageClicked() {
+    watchMore(previousPage);
   }
   // ==================== Controller Functionality =============================
   initialize();
