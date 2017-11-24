@@ -1,10 +1,15 @@
-app.controller('AddCountryController',['$scope', 'toastr', 'CountryService',
-function ($scope, toastr, CountryService) {
+app.controller('AddCountryController',[
+'$scope', 'toastr', 'CountryService', '$window',
+function ($scope, toastr, CountryService, $window) {
   // ----------------------- Controller variables ------------------------------
+  
   // -------------------------- Scope variables --------------------------------
   $scope.country = {};
+
   // -------------------------- Scope functions --------------------------------
   $scope.addCountry = addCountry;
+  $scope.openWikiPage = openWikiPage;
+
   // ----------------------- Function Declaration ------------------------------
   function addCountry() {
     if (!$scope.country.name){
@@ -23,5 +28,9 @@ function ($scope, toastr, CountryService) {
       .catch(function (error) {
         toastr.error(error.data.message, {timeout: 1500});
       })
+  }
+
+  function openWikiPage() {
+    $window.open('https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2');
   }
 }]);

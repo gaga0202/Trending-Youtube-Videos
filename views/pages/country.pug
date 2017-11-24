@@ -3,6 +3,7 @@
     .panel-heading.text-center
       lable Country Data  
     .panel-body
+      h4.text-center.main-heading  Add country and code to view top 25 trending videos of your country
       .form-inline.text-center
         .form-group
           label.form-lable Country Name:
@@ -13,3 +14,7 @@
       br
       .row.text-center
         button.btn.btn-success.form-button(ng-click='addCountry()') Add country
+  .row.text-center
+    h6 You can view country list and code 
+      a.cursor-pointer(ng-click='openWikiPage()')
+        span here.
