@@ -10,8 +10,10 @@
     div#image.form-margin-bottom(ng-repeat='x in trendingVideos')
       .row
         .col-sm-5.text-center
-          img#image.thumbnail-display(ng-src="{{x.video.thumbnailUrl}}", alt="Thumbnail error")
+          a(href='/video/{{ x.video.videoId }}')
+            img#image.thumbnail-display(ng-src="{{x.video.thumbnailUrl}}", alt="Thumbnail error")
         .col-sm-7(style='display: block;')
-          h6.text-margin Trend No: {{ x.trendingNo }}
-          h6.text-margin Title: {{ x.video.title}}
+          a(href='/video/{{ x.video.videoId }}')
+            h6.text-margin Trend No: {{ x.trendingNo }}
+            h6.text-margin Title: {{ x.video.title}}
           p.text-margin.text-muted.hide-description Description : {{ x.video.description }}
