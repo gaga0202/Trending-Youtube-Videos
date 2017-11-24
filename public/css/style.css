@@ -79,3 +79,36 @@ button > a:hover{
 .cursor-pointer {
   cursor: pointer;
 }
+
+.navbar-default {
+  background: rgb(49, 47, 47);
+  color:    white;
+  padding-left: 10px;
+  padding-right: 10px; 
+}
+a.nav-color.navbar-brand.navbar-left {
+  color:   rgba(255, 255, 255, 0.96);
+}
+
+/* .navbar-default .navbar-nav>.active>a {
+  background: rgba(19, 18, 18, 0);
+  color:   rgba(255, 255, 255, 0.96);
+} */
+.navbar-default .navbar-nav>.active>a
+{
+  color: white;
+  background: rgb(49, 47, 47);
+}
+.navbar-default .navbar-nav>.active>a:hover {
+  color: white;
+  background: rgba(70, 70, 70, 0.816);
+}
+.navbar-default .navbar-nav>.active>a:focus
+{
+  color: white;
+  background: rgb(49, 47, 47);
+}
+
+.margin-top-50 {
+  margin-top: 50px;
+}

@@ -41,7 +41,15 @@ html(lang='en', ng-app='mainApp')
     script(src='/js/service/video-player.client.service.js?version=' + version)
   body
     //- WILL add Background image
-    div(class="background-div")
+    .navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          a.nav-color.navbar-brand.navbar-left(href='/') Home
+        ul.nav.navbar-nav.pull-right
+          li.active
+            a(href='/add-country') Add Country
+          li.active
+            a(href='/list-countries') Countries List
     //- ANGULAR DYNAMIC CONTENT
-    div(ng-view='')
+    div.margin-top-50(ng-view='')
     //- END ANGULAR DYNAMIC CONTENT
