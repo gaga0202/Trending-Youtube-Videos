@@ -14,7 +14,7 @@ module.exports = {
    */
   addCountry: function (req, res) {
     var code = req.body.code.toLowerCase();
-    var name = req.body.name;
+    var name = req.body.name.toUpperCase();
     CountryModel.findOne({code: code})
       .then(function (c) {
         if (c) {
@@ -124,7 +124,7 @@ module.exports = {
   editCountry: function (req, res) {
     var previousCode = req.body.previousCode.toLowerCase();
     var newCode      = req.body.newCode.toLowerCase();
-    var newName      = req.body.newName;
+    var newName      = req.body.newName.toUpperCase();
     CountryModel.findOneAndUpdate(
         {code: previousCode}, 
         {$set: {code: newCode, name: newName}}
