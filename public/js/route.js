@@ -23,7 +23,18 @@ function ($routeProvider, $locationProvider) {
       templateUrl:    '/html-templates/watch-video',
       controller:     'WatchVideoController'
     })
-    .otherwise({ redirectTo: '/' });
+    .otherwise({ 
+      templateUrl: '/html-templates/home',
+      controller:   'HomeController',
+      resolve:      {
+        pageNotFound:   pageNotFound
+      }
+     });
+
+     function pageNotFound(toastr, $location) {
+       toastr.error('Page not found', {timeout: 1500});
+       $location.url('/');
+     }
 
   //eliminate the hashbang
   $locationProvider.html5Mode(true);
