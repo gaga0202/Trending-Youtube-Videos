@@ -1,12 +1,13 @@
-angular.controller('WatchVideoController',[
-'$scope', '$location', 'TrendService',
-function ($scope, $location, TrendService) {
+app.controller('WatchVideoController',[
+'$scope', '$location', 'TrendService', '$routeParams',
+function ($scope, $location, TrendService, $routeParams) {
   
   //===================== Variable Initialization ==============================
   var page = 1;
 
   // ======================== Scope Variables ==================================
   $scope.videoId = $routeParams.videoId;
+  $scope.video;
 
   // ======================== Scope Functions ==================================
 
@@ -20,10 +21,13 @@ function ($scope, $location, TrendService) {
   function getVideoDetails() {
     TrendService.getVideoDetails($scope.videoId)
       .then(function (result) {
-        console.log(result);
+        $scope.video = result.data.video;
       })
       .catch(function (error) {
-        console.log(error);
+        toastr.error(error.data.message, {timeout: 1500});
+        if (error.status === 404) {
+          $location.url('/');
+        } 
       });
   }
 
@@ -41,6 +45,6 @@ function ($scope, $location, TrendService) {
       });
   }
   // ==================== Controller Functionality =============================
-
+  initialize();
 
 }]);
