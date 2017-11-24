@@ -123,7 +123,7 @@ module.exports = {
       .then(function (pArray) {
         var trendingArray = _.sortBy(pArray, 'trendingNo');
         var previousPage, nextPage;
-        if (page * limit > 25) {
+        if (page * limit >= 24) {
           nextPage = 1;
         } else {
           nextPage = page + 1;
