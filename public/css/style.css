@@ -70,3 +70,12 @@ button > a:hover{
   border: 1px;
   color:  white;
 }
+.flex {
+  display:  flex;
+}
+.vertically-middle {
+  vertical-align: middle;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
