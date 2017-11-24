@@ -22,15 +22,9 @@ function ($scope, $location, TrendService, $routeParams, VideoPlayer, toastr) {
     TrendService.getVideoDetails($scope.videoId)
       .then(function (result) {
         $scope.video = result.data.video;
-        console.log($scope.video);
-        var externalSource = {
-          source:     'youtube',
-          url:        'www.youtube.com/watch?v=' + $scope.video.videoId
-        };
-        var player = VideoPlayer.videoJSPlayer('main-video', externalSource);
+        var player = VideoPlayer.youtubePlayer($scope.videoId);
       })
       .catch(function (error) {
-        console.log(error);
         toastr.error(error.data.message, {timeout: 1500});
         if (error.status === 404) {
           $location.url('/');
@@ -44,8 +38,7 @@ function ($scope, $location, TrendService, $routeParams, VideoPlayer, toastr) {
       videoId:    $scope.videoId,
     };
     TrendService.watchMore(details)
-      .then(function (result) {
-        console.log(result.data);
+      .then(function (result) {        
         $scope.videos = result.data.videos;
       })
       .catch(function (error) {

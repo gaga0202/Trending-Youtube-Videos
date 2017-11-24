@@ -47,8 +47,18 @@ button > a:hover{
 .max-width-90 {
   max-width:    90%;
 }
+.max-width-100 {
+  max-width:    100%;
+}
 .hide-description {
   line-height:  1.5em;
   max-height:   6em;
   overflow: scroll;
+}
+.icon-style {
+  font-size: 24px;
+  color: rgb(216, 122, 50);
+}
+.margin-10 {
+  margin: 10px;
 }
