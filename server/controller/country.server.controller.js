@@ -13,7 +13,7 @@ module.exports = {
    * }
    */
   addCountry: function (req, res) {
-    var code = req.body.code;
+    var code = req.body.code.toLowerCase();
     var name = req.body.name;
     CountryModel.findOne({code: code})
       .then(function (c) {
@@ -59,7 +59,7 @@ module.exports = {
     if (!limit) {
       limit = globals.limitOfCountriesPerPage;
     }
-    var code = req.query.code;
+    var code = req.query.code.toLowerCase();
     var query = {};
     if (code){
       query.code = code;
@@ -102,7 +102,7 @@ module.exports = {
    * }
    */
   deleteCountry: function (req, res) {
-    var code = req.params.countryCode;
+    var code = req.params.countryCode.toLowerCase();
     if (!code) {
       return res.status(400).json({
         message: 'Country not selected',
@@ -122,8 +122,8 @@ module.exports = {
   },
 
   editCountry: function (req, res) {
-    var previousCode = req.body.previousCode;
-    var newCode      = req.body.newCode;
+    var previousCode = req.body.previousCode.toLowerCase();
+    var newCode      = req.body.newCode.toLowerCase();
     var newName      = req.body.newName;
     CountryModel.findOneAndUpdate(
         {code: previousCode}, 

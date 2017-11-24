@@ -13,7 +13,7 @@ module.exports = {
    * Get top 25 trending videos of a country
    */
   trendingVideos: function (req, res) {
-    var regionCode = req.body.code;
+    var regionCode = req.body.code.toLowerCase();
     var country;
     if (!regionCode) {
       return res.status(400).json({
