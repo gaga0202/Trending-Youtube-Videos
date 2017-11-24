@@ -1,7 +1,7 @@
 .container
-  .row.text-center.margin-10
+  .row.text-center.margin-10.title-bar(style='margin-bottom: 0px;')
     h4 {{ video.title }}
-  .row.text-center.margin-10
+  .row.text-center.margin-10.bg-dark(style='margin-top: 0px;')
     video.max-width-100#main-video()
   .row.text-center.margin-10
     i.glyphicon.glyphicon-thumbs-up.icon-style &nbsp;{{ video.reactions.likes}}&nbsp;

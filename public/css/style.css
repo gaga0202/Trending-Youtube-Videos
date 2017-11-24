@@ -62,3 +62,11 @@ button > a:hover{
 .margin-10 {
   margin: 10px;
 }
+.bg-dark {
+  background-color: black;
+}
+.title-bar {
+  background-color: rgb(48, 44, 39);
+  border: 1px;
+  color:  white;
+}
