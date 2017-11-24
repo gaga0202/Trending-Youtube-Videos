@@ -1,8 +1,20 @@
 .container
   .row
-    video#main-video()
+    video.video-js#main-video()
   .row
-    .col-sm-6
-      
-    .col-sm-6
+    .col-sm-6.text-center
+      h4 {{ video.title }}
+    .col-sm-6.text-center
+      i.glyphicon.glyphicon-thumbs-up(style='font-size: 32px;color: blue;') &nbsp;{{ video.reactions.likes}}&nbsp;
+      i.glyphicon.glyphicon-thumbs-down(style='font-size: 32px;color: blue;') &nbsp;{{ video.reactions.dislikes}}&nbsp;
+      i.fa.fa-eye(style='font-size: 32px;color: blue;') &nbsp;{{ video.views}}&nbsp;
+  .row
+    p.text-muted {{ video.description }}
+  .row
+    div(ng-repeat='x in videos')
+      .col-sm-4
+        a(href='/video/{{ x.video.videoId }}')
+          img#image.thumbnail-display(src='{{ x.video.thumbnailUrl }}')
+          h6.text-center.max-width-90 Trend No: {{ x.trendingNo }}
+          h6.text-center.max-width-90 {{ x.video.title }}
       

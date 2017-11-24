@@ -44,6 +44,9 @@ button > a:hover{
   display:      'inline-block';
   max-width:    90%;
 }
+.max-width-90 {
+  max-width:    90%;
+}
 .hide-description {
   line-height:  1.5em;
   max-height:   6em;
