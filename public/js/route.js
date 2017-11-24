@@ -19,6 +19,10 @@ function ($routeProvider, $locationProvider) {
       templateUrl:  '/html-templates/edit-country',
       controller:   'EditCountryController'
     })
+    .when('/video/:videoId', {
+      templateUrl:    '/html-templates/watch-video',
+      controller:     'WatchVideoController'
+    })
     .otherwise({ redirectTo: '/' });
 
   //eliminate the hashbang

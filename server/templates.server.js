@@ -16,5 +16,10 @@ module.exports = {
 
   editCountry: function (req, res) {
     res.render('pages/edit-country');
-  }
-}
+  },
+
+  // Watch video page
+  watchVideo:  function (req, res) {
+    res.render('pages/watch-video');
+  },
+};
