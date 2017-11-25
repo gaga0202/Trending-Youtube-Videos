@@ -29,6 +29,7 @@ module.exports = {
         return getYoutubeVideos(regionCode);
       })
       .then(function (_result) {
+        console.log(_result);
         var resultObject = getTopTrendingVideosForCountry(regionCode);
         return resultObject;
       })
