@@ -1,16 +1,16 @@
 .container.container-dark
-  .panel.panel-primary
-    .panel-heading.text-center
+  .panel.pannel-background
+    .panel-heading.text-center.pannel-heading-background
       lable Country Data  
     .panel-body
       h4.text-center.main-heading  Add country and code to view top 25 trending videos of your country
       .form-inline.text-center
         .form-group
           label.form-lable Country Name:
-          input(type='text', ng-model='country.name')
+          input.form-input(type='text', ng-model='country.name')
         .form-group
           label.form-lable Country code:
-          input(type='text', ng-model='country.code')
+          input.form-input(type='text', ng-model='country.code')
       br
       .row.text-center
         button.btn.btn-success.form-button(ng-click='addCountry()') Add country

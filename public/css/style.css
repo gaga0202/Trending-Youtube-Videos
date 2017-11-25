@@ -1,6 +1,17 @@
 .form-button {
   max-width: 200px;
 }
+.form-input {
+  color:  black;
+}
+.pannel-background {
+  background-color:  black;
+  color: white;
+  border-color: white; 
+}
+.pannel-heading-background {
+  background-color: rgba(49,47,47,1);
+}
 .form-group {
   margin-right: 10px;
 }
@@ -111,4 +122,8 @@ a.nav-color.navbar-brand.navbar-left {
 
 .margin-top-50 {
   margin-top: 50px;
+}
+.body-background{
+  background-color: black;
+  color: white;
 }
