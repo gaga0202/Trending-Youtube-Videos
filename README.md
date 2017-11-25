@@ -18,4 +18,5 @@
 - Integarting Youtube Player 'To give organic views to the video'
 
 ## Author 
-- @gaga0202
+- **Gagandeep Nain** - github profile [@gaga0202](https://github.com/gaga0202)
+- Currently working with Tapview as lead developer on [TapviewTv](https://tapview.com/about/team)
