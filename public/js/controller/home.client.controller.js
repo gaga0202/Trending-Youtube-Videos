@@ -20,7 +20,6 @@ function ($scope, $location, toastr, $routeParams, CountryService, TrendService)
     }
     pTrendingList
       .then(function (result) {
-        console.log(result);
         $scope.trendingVideos = result.data.trendingVideos;
         $scope.country.countryName = result.data.countryName;
         $scope.country.countryCode = result.data.countryCode;
