@@ -16,3 +16,6 @@
 - Css
 - Integrating External Apis 'To get the trending list from youtube videos and their details'
 - Integarting Youtube Player 'To give organic views to the video'
+
+## Author 
+- @gaga0202
