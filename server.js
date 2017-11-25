@@ -8,7 +8,7 @@ var express           = require('express'),
     version           = require('./package.json').version,
     routes            = require('./server/routes'),
     startMongodb      = require('./config/start-mongodb'),
-    port              = process.env.PORT || 3001;
+    port              = process.env.PORT || 5000;
 
 var app = express();
 
@@ -16,7 +16,7 @@ var app = express();
  * ============================ Start Mongodb ==================================
  */
 startMongodb.connect();
-
+console.log('the port is ' + port);
 /**
  * ===================== Set pug as view engine ================================
  */
