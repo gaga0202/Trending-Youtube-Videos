@@ -157,7 +157,8 @@ module.exports = {
   },
 
   getAll: function (req, res) {
-    return CountryModel.find()
+    var options = {sort: {name:  1}};
+    return CountryModel.find({}, {}, options)
       .then(function (result) {
         return res.status(200).json({
           message:        'All countries list',
