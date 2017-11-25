@@ -21,6 +21,9 @@ app.factory('CountryService', ['$http', function ($http) {
       if (query.code) {
         url = url + '&code=' + query.code;
       }
+      if (query.fromListCountries){
+        url = url + '&fromListCountries=' + true;
+      }
       return $http.get(url);
     },
 

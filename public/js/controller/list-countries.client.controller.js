@@ -25,8 +25,9 @@ function ($scope, toastr, CountryService, $interval, $location) {
     }
     $scope.initialized = true;
     var getData = {
-      page:   $scope.page,
-      limit:  limit
+      page:                 $scope.page,
+      limit:                limit,
+      fromListCountries:    true
     };
     if (!$scope.finished) {
       return CountryService.listCountries(getData)

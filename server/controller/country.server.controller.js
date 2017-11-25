@@ -60,6 +60,7 @@ module.exports = {
       limit = globals.limitOfCountriesPerPage;
     }
     var code = req.query.code;
+    var fromListCountries = req.query.fromListCountries;
     var query = {};
     if (code){
       query.code = code.toLowerCase();
@@ -75,6 +76,12 @@ module.exports = {
         return CountryModel.find(query, {}, options);
       })
       .then(function (listCountries) {
+        var resultArray = listCountries;
+        if (fromListCountries){
+          resultArray = _.filter(listCountries, function(o) { 
+            return o.code.toLowerCase() !== 'au'; 
+          });
+        }
         var next;
         next = req.path + '?page=';
         if (count > page * limit) {
@@ -84,7 +91,7 @@ module.exports = {
         }
         return res.status(200).json({
           message:    'List of countries',
-          countries:  listCountries,
+          countries:  resultArray,
           next:       next,
         });
       })
@@ -108,6 +115,12 @@ module.exports = {
         message: 'Country not selected',
       });
     }
+    // because home page is dependent on code au
+    if (code === 'au') {
+      return res.status(400).json({
+        message:    'Australia can\'t be deleted from records',
+      });
+    }
     CountryModel.remove({code: code})
       .then(function (_result) {
         return res.status(200).json({
@@ -125,6 +138,11 @@ module.exports = {
     var previousCode = req.body.previousCode.toLowerCase();
     var newCode      = req.body.newCode.toLowerCase();
     var newName      = req.body.newName.toUpperCase();
+    if (previousCode === 'au') {
+      return res.status(400).json({
+        message:    'Australia can\'t be deleted from records',
+      });
+    }
     CountryModel.findOneAndUpdate(
         {code: previousCode}, 
         {$set: {code: newCode, name: newName}}
