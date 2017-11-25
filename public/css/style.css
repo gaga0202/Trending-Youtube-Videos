@@ -3,6 +3,7 @@
 }
 .form-input {
   color:  black;
+  background-color: white;
 }
 .pannel-background {
   background-color:  black;
@@ -123,6 +124,15 @@ a.nav-color.navbar-brand.navbar-left {
 {
   color: white;
   background: rgb(49, 47, 47);
+}
+.nav>li {
+  display: inline-block;
+}
+.container-fluid>.navbar-collapse, 
+.container-fluid>.navbar-header, 
+.container>.navbar-collapse, 
+.container>.navbar-header {
+  display: inline-block;
 }
 
 .margin-top-50 {
