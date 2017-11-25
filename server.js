@@ -15,7 +15,7 @@ var app = express();
 /**
  * ============================ Start Mongodb ==================================
  */
-startMongodb.connect();
+// startMongodb.connect();
 
 /**
  * ===================== Set pug as view engine ================================
@@ -47,4 +47,4 @@ app.listen(port, function () {
 app.get('*', function (req, res) {
   res.locals.version = version;
   res.render('index');
-})
+});
