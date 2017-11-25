@@ -24,6 +24,11 @@
 .table-margin{
   margin: 20px 0px;
 }
+.table-styling {
+  background-color: white; 
+  color: black; 
+  border-radius: 10px;
+}
 .form-margin-left{
   margin-left: 2%;
 }
@@ -127,3 +132,4 @@ a.nav-color.navbar-brand.navbar-left {
   background-color: black;
   color: white;
 }
+
