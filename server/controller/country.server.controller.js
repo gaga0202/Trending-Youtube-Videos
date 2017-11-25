@@ -115,6 +115,12 @@ module.exports = {
         message: 'Country not selected',
       });
     }
+    // because home page is dependent on code au
+    if (code === 'au') {
+      return res.status(400).json({
+        message:    'Australia can\'t be deleted from records',
+      });
+    }
     CountryModel.remove({code: code})
       .then(function (_result) {
         return res.status(200).json({
@@ -132,6 +138,11 @@ module.exports = {
     var previousCode = req.body.previousCode.toLowerCase();
     var newCode      = req.body.newCode.toLowerCase();
     var newName      = req.body.newName.toUpperCase();
+    if (previousCode === 'au') {
+      return res.status(400).json({
+        message:    'Australia can\'t be deleted from records',
+      });
+    }
     CountryModel.findOneAndUpdate(
         {code: previousCode}, 
         {$set: {code: newCode, name: newName}}
