@@ -59,10 +59,10 @@ module.exports = {
     if (!limit) {
       limit = globals.limitOfCountriesPerPage;
     }
-    var code = req.query.code.toLowerCase();
+    var code = req.query.code;
     var query = {};
     if (code){
-      query.code = code;
+      query.code = code.toLowerCase();
     }
     var count;
     CountryModel.count(query)
