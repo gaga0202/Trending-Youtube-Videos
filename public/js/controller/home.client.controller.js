@@ -24,6 +24,7 @@ function ($scope, $location, toastr, $routeParams, CountryService, TrendService)
         $scope.trendingVideos = result.data.trendingVideos;
         $scope.country.countryName = result.data.countryName;
         $scope.country.countryCode = result.data.countryCode;
+        $scope.title2 = $scope.country.countryName + '\'s top 25 trending videos';
       })
       .catch(function (error) {
         toastr.error(error.data.message, {timeOut: 1500});
