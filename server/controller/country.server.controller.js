@@ -60,6 +60,7 @@ module.exports = {
       limit = globals.limitOfCountriesPerPage;
     }
     var code = req.query.code;
+    var fromListCountries = req.query.fromListCountries;
     var query = {};
     if (code){
       query.code = code.toLowerCase();
@@ -75,6 +76,12 @@ module.exports = {
         return CountryModel.find(query, {}, options);
       })
       .then(function (listCountries) {
+        var resultArray = listCountries;
+        if (fromListCountries){
+          resultArray = _.filter(listCountries, function(o) { 
+            return o.code.toLowerCase() !== 'au'; 
+          });
+        }
         var next;
         next = req.path + '?page=';
         if (count > page * limit) {
@@ -84,7 +91,7 @@ module.exports = {
         }
         return res.status(200).json({
           message:    'List of countries',
-          countries:  listCountries,
+          countries:  resultArray,
           next:       next,
         });
       })
