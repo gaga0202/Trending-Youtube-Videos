@@ -6,6 +6,8 @@
       select.form-margin-left.form-input(ng-model='country.countryCode', style='width: 30%;')
         option.text-capitalize.form-input(ng-repeat='x in country.countries', value='{{x.countryCode}}') {{x.countryName}}
       button.btn.btn-danger.form-margin-left(ng-click='getTrendForCountry()') Show Trending Videos
+  .row.text-center
+    h3.main-heading {{ country.countryName }}'s top 25 trending videos
   .row
     div#image.form-margin-bottom(ng-repeat='x in trendingVideos')
       .row
