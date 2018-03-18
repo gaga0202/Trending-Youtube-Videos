@@ -8,7 +8,7 @@ var express           = require('express'),
     version           = require('./package.json').version,
     routes            = require('./server/routes'),
     startMongodb      = require('./config/start-mongodb'),
-    port              = process.env.PORT || 5000;
+    port              = process.env.PORT || 3002;
 
 var app = express();
 
