@@ -18,27 +18,8 @@ html(lang='en', ng-app='mainApp')
     link(href='//cdn.jsdelivr.net/animatecss/3.2.0/animate.css', rel='stylesheet')
     link(rel='stylesheet', href='/vendor/bower_components/angular-toastr/dist/angular-toastr.css?version=' + version)
     link(rel='stylesheet', href='/css/style.css')
-    script(src='/vendor/bower_components/angular/angular.min.js?version=' + version)
-    script(src='/vendor/bower_components/angular-toastr/dist/angular-toastr.tpls.js?version=' + version)
-    script(src='/vendor/bower_components/angular-route/angular-route.min.js?version=' + version)
-    script(src='/vendor/bower_components/jquery/dist/jquery.min.js?version=' + version)
-    script(src='/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js?version=' + version)
-    script(src='/vendor/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js?version=' + version)
-    script(src='/vendor/bower_components/video.js/dist/video.min.js?version=' + version)
-    script(src='https://www.youtube.com/iframe_api')
-    //- ANGULAR CUSTOM SCRIPTS
-    script(src='/js/app.js?version=' + version)
-    script(src='/js/route.js?version=' + version)
-    //- CONTROLLERS
-    script(src='/js/controller/home.client.controller.js?version=' + version)
-    script(src='/js/controller/add-country.client.controller.js?version=' + version)
-    script(src='/js/controller/list-countries.client.controller.js?version=' + version)
-    script(src='/js/controller/edit-country.client.controller.js?version=' + version)
-    script(src='/js/controller/watch-video.client.controller.js?version=' + version)
-    //- SERVICE
-    script(src='/js/service/country.client.service.js?version=' + version)
-    script(src='/js/service/trend.client.service.js?version=' + version)
-    script(src='/js/service/video-player.client.service.js?version=' + version)
+    script(data-ad-client="ca-pub-1187879256180329" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+
   body.body-background
     //- WILL add Background image
     .navbar.navbar-default.navbar-fixed-top
@@ -53,3 +34,27 @@ html(lang='en', ng-app='mainApp')
     //- ANGULAR DYNAMIC CONTENT
     div.margin-top-50(ng-view='')
     //- END ANGULAR DYNAMIC CONTENT
+
+
+    //- LOAD SCRIPTS
+    script(src='/vendor/bower_components/angular/angular.min.js?version=' + version )
+    script(src='/vendor/bower_components/angular-toastr/dist/angular-toastr.tpls.js?version=' + version)
+    script(src='/vendor/bower_components/angular-route/angular-route.min.js?version=' + version)
+    script(src='/vendor/bower_components/jquery/dist/jquery.min.js?version=' + version)
+    script(src='/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js?version=' + version)
+    script(src='/vendor/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js?version=' + version)
+    script(async, src='/vendor/bower_components/video.js/dist/video.min.js?version=' + version)
+    script(async, src='https://www.youtube.com/iframe_api')
+    //- ANGULAR CUSTOM SCRIPTS
+    script(src='/js/app.js?version=' + version)
+    script(src='/js/route.js?version=' + version)
+    //- CONTROLLERS
+    script(src='/js/controller/home.client.controller.js?version=' + version)
+    script(src='/js/controller/add-country.client.controller.js?version=' + version)
+    script(src='/js/controller/list-countries.client.controller.js?version=' + version)
+    script(src='/js/controller/edit-country.client.controller.js?version=' + version)
+    script(src='/js/controller/watch-video.client.controller.js?version=' + version)
+    //- SERVICE
+    script(src='/js/service/country.client.service.js?version=' + version)
+    script(src='/js/service/trend.client.service.js?version=' + version)
+    script(src='/js/service/video-player.client.service.js?version=' + version)
